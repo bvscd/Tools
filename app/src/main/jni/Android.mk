@@ -1,8 +1,6 @@
 ########################## 
 
-
 LOCAL_PATH:= $(call my-dir)
-
 
 common_CFLAGS := -Wpointer-arith -Wwrite-strings -Wunused -Winline \
 -Wnested-externs -Wmissing-declarations -Wmissing-prototypes -Wno-long-long \

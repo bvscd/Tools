@@ -46,6 +46,7 @@ jstring
  *
  */
 {   
+пррр
    handle engine = (handle)jengine;
    return (*env)->NewStringUTF(env, ria_uapi_error_msg(engine));
 }
