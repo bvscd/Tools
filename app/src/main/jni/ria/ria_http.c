@@ -1539,7 +1539,7 @@ bool
     * LL [<cookie>=<value>; EEEE]
     *
     */
-   if (!ria_http_find_cookie_pos(&p, &l, dst, src->pname, src->cname))
+   if (!ria_http_find_cookie_pos((const byte**)&p, &l, dst, src->pname, src->cname))
       return false;    
    if (p == NULL) {
       if (l != 0)

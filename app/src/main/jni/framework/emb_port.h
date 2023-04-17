@@ -252,10 +252,14 @@ extern "C" {
 #define ENDIAN_LITTLE
 #define PLATFORM_32BIT
 #define ADDRESS_32BIT
-#elif defined(__GNUC__) && defined(__ARM_ARCH_5__)
+#elif defined(__GNUC__) && defined(__arm__)
 #define ENDIAN_LITTLE
 #define PLATFORM_32BIT
 #define ADDRESS_32BIT
+#elif defined(__GNUC__) && defined(__aarch64__)
+#define ENDIAN_LITTLE
+#define PLATFORM_64BIT
+#define ADDRESS_64BIT
 #elif defined(__GNUC__) && defined(__i386__)
 #define ENDIAN_LITTLE
 #define PLATFORM_32BIT
@@ -436,12 +440,12 @@ typedef void*  handle;                      /* Generic handle                */
 #define PORTABLE_RAND()                                                       \
            ( rand() )
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) 
 #define PORTABLE_SPRINTF   sprintf
-#elif defined(WIN32_APP) || defined(LINUX_APP) || defined(ANDROID)
+#elif defined(WIN32_APP) || defined(LINUX_APP)
 #define PORTABLE_SPRINTF(_s, _c, ...)                                         \
            ( sprintf_s((_s), (_c), __VA_ARGS__) )
-#elif defined(WISE12)
+#elif defined(WISE12) || defined(ANDROID)
 #define PORTABLE_SPRINTF(_s, _c, ...)                                         \
            ( sprintf((_s), __VA_ARGS__) ) 
 #else

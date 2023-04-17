@@ -57,7 +57,7 @@ void
 #define RIA_TRACE_INT(_i)                                                     \
    {                                                                          \
       char _si[15];                                                           \
-      Sprintf1(_si, sizeof(_si), "%d", _i);                                   \
+      Sprintf(_si, sizeof(_si), "%d", _i);                                   \
       do_android_log(_sz, &_cc, sizeof(_sz), _si, StrLen(_si), false);        \
    } 
 #define RIA_TRACE_STOP                                                        \

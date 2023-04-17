@@ -778,7 +778,6 @@ bool
    ria_param_t begin;
    ria_param_t end;
    ria_param_t hint;
-   ctx, dst;
 
    assert(dst   != NULL);
    assert(ppar  != NULL);
@@ -835,7 +834,6 @@ bool
     
    ria_param_t filename;
    ria_param_t type;
-   ctx, dst;
 
    assert(dst   != NULL);
    assert(ppar  != NULL);
@@ -908,7 +906,7 @@ bool
    byte* p;
    
    ria_param_t src;
-   ctx, dst;
+   UNUSED(ctx);
 
    assert(dst   != NULL);
    assert(ppar  != NULL);
@@ -1055,7 +1053,7 @@ bool
    ria_param_t pos;
    ria_param_t begin;
    ria_param_t end;
-   ctx, dst;
+   UNUSED(ctx);
 
    assert(dst   != NULL);
    assert(ppar  != NULL);
@@ -1196,7 +1194,6 @@ bool
    ria_param_t pos;
    ria_param_t begin;
    ria_param_t end;
-   ctx, dst;
 
    assert(dst   != NULL);
    assert(ppar  != NULL);
@@ -1289,15 +1286,19 @@ bool
     * Save result
     *
     */
-   MemMove(pt, p, q-p);
-   pt[q-p] = 0x00;
-   if (!buf_set_length(q-p+1, dst))
+   if (q < p) {
+       ERR_SET(err_internal);
+   }
+   c = q - p;
+   MemMove(pt, p, c);
+   pt[c] = 0x00;
+   if (!buf_set_length(c+1, dst))
       goto exit;
    ret = true;
 #ifdef EXTRACT_STRING_FROM_FILE_TRACE
    RIA_TRACE_START;
    RIA_TRACE_MSG("Result=");
-   RIA_TRACE_STR(pt, q-p);
+   RIA_TRACE_STR((const char*)pt, c);
    RIA_TRACE_MSG("\n");
    RIA_TRACE_STOP;
 #endif
@@ -1368,7 +1369,6 @@ bool
 
    ria_param_t file;
    ria_param_t url;
-   dst;
 
    assert(dst   != NULL);
    assert(ppar  != NULL);
@@ -1632,12 +1632,12 @@ bool
    byte  buf[12];
    usize u;
    byte* pt;
-   ctx;
    
    assert(dst   != NULL);
    assert(ppar  != NULL);
    assert(ctx   != NULL);
    assert(flags != NULL);
+   UNUSED(ctx);
 
    UNPACK_INT(src, ppar, cpar);
    if (cpar != 0)
@@ -1687,7 +1687,7 @@ bool
    assert(dst   != NULL);
    assert(ctx   != NULL);
    assert(flags != NULL);
-   ppar;
+   UNUSED(ppar);
 
    if (cpar != 0)
       ERR_SET(err_internal);
@@ -1723,12 +1723,12 @@ bool
     
    ria_param_t str;
    byte* pt;
-   ctx;
    
    assert(dst   != NULL);
    assert(ppar  != NULL);
    assert(ctx   != NULL);
    assert(flags != NULL);
+   UNUSED(ctx);
 
    UNPACK_STRING(str, ppar, cpar);
    if (cpar != 0)
@@ -2301,7 +2301,7 @@ bool
        * Check whether it is interesting
        *
        */
-      if (cookie.cdomain != 0)   
+      if (cookie.cdomain != 0) {
          if (cookie.cdomain < site.len) {
             if (StrNICmp(
                    cookie.pdomain, 
@@ -2316,6 +2316,7 @@ bool
                    site.len))
                continue;      
          }
+      }
       if ((sizeof(_any)-1 != key.len) || 
           StrNICmp(_any, key.uptr.str, key.len)) {
          if (cookie.cname != key.len)
@@ -2497,12 +2498,12 @@ bool
    ria_param_t src;
    usize i, u;
    byte* pt;
-   ctx;
    
    assert(dst   != NULL);
    assert(ppar  != NULL);
    assert(ctx   != NULL);
    assert(flags != NULL);
+   UNUSED(ctx);
 
    UNPACK_STRING(src, ppar, cpar);
    if (cpar != 0)
@@ -2555,12 +2556,12 @@ bool
    ria_param_t len;    
    usize l, u;
    byte* pt;
-   ctx;
    
    assert(dst   != NULL);
    assert(ppar  != NULL);
    assert(ctx   != NULL);
    assert(flags != NULL);
+   UNUSED(ctx);
 
    UNPACK_STRING(str, ppar, cpar);
    UNPACK_INT(pos, ppar, cpar);

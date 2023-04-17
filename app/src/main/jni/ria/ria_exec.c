@@ -432,7 +432,7 @@ bool
    assert(type != NULL);
    assert(p    != NULL);
    assert(c    != NULL);
-   ctx;
+   UNUSED(ctx);
 
    switch (kind) {
    case ria_data_var:
@@ -487,7 +487,6 @@ bool
    assert(data3 != NULL);
    assert(data1 != NULL);
    assert(ctx   != NULL);
-   ctx;
 
    /*
     * Get source
@@ -554,7 +553,6 @@ bool
    assert(data2 != NULL);
    assert(data1 != NULL);
    assert(ctx   != NULL);
-   ctx;
 
    /*
     * Get operands
@@ -625,7 +623,6 @@ bool
    assert(data3 != NULL);
    assert(data1 != NULL);
    assert(ctx   != NULL);
-   ctx;
 
    /*
     * Get operands
@@ -716,7 +713,6 @@ bool
    assert(data3 != NULL);
    assert(data1 != NULL);
    assert(ctx   != NULL);
-   ctx;
 
    /*
     * Get operands
@@ -805,7 +801,6 @@ bool
    assert(data2 != NULL);
    assert(data1 != NULL);
    assert(ctx   != NULL);
-   ctx;
 
    /*
     * Get operands

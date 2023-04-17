@@ -76,14 +76,14 @@ void
       }
       if (b || ((*cval) == cbuf-1)) {      
          buf[*cval] = 0x00;
-         __android_log_print(ANDROID_LOG_INFO, "libria", buf);                    
+         __android_log_print(ANDROID_LOG_INFO, "libria", "%s", buf);                    
          *cval = 0;
       }   
    }
    
    if (flush && (*cval != 0)) {
       buf[*cval] = 0x00;
-      __android_log_print(ANDROID_LOG_INFO, "libria", buf);                    
+      __android_log_print(ANDROID_LOG_INFO, "libria", "%s", buf);                    
       *cval = 0;
    }
    
@@ -455,7 +455,6 @@ bool
 {
 
    usize i, j;
-   ctx;
 
    assert(parnlen != NULL);
    assert(paridx  != NULL);

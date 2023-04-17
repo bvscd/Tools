@@ -660,7 +660,7 @@ bool
     *
     */
    if (!heap_alloc(
-           &p, 
+           (void**)&p, 
            sizeof(ria_parser_rule_t)+cname+cbegin+cend+chint, 
            ctx->mem))
       return false;
@@ -729,5 +729,7 @@ bool
    return true;
 
 }
+
+
 
 

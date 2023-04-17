@@ -930,7 +930,7 @@ bool
             goto cleanup;
          }   
          q[0] = 0x00;      
-         headerlist = curl_slist_append(headerlist, p);
+         headerlist = curl_slist_append(headerlist, (const char*)p);
          if (headerlist == NULL) {
             ERR_SET_NO_RET(err_internal);
             goto cleanup;
@@ -1218,7 +1218,6 @@ bool
 #ifdef WIN32_APP
    if (!InternetCloseHandle(ctx->request))
       ERR_SET(err_internal);
-   return true;
 #elif defined(ANDROID) || defined (WISE12)
    /*
     * Do nothing
@@ -1227,7 +1226,8 @@ bool
 #else
 #error Not implemented
 #endif
-
+   return true;
+   
 }
 
 #if 0

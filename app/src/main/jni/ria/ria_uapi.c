@@ -474,7 +474,7 @@ bool
       Sprintf(pe->errmsg, sizeof(pe->errmsg), "Cannot define script size");
       goto exit;
    }
-   if (!heap_alloc(&p, c*2, _heap)) {
+   if (!heap_alloc((void**)&p, c*2, _heap)) {
       DUMP_SYS_ERROR(pe);
       goto exit;
    }

@@ -389,7 +389,7 @@ void
 
    assert(tm_time != NULL);
 
-   MemSet(tm_time, 0x00, sizeof(tm_time));
+   MemSet(tm_time, 0x00, sizeof(*tm_time));
    tm_tmp = gmtime(&time_tmp);
    if (tm_tmp != NULL) 
       MemCpy(tm_time, tm_tmp, sizeof(*tm_tmp));

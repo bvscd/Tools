@@ -46,7 +46,6 @@ jstring
  *
  */
 {   
-пррр
    handle engine = (handle)jengine;
    return (*env)->NewStringUTF(env, ria_uapi_error_msg(engine));
 }
@@ -268,23 +267,21 @@ Java_com_example_afisha_Afisha_stringFromJNI( JNIEnv* env,
    b = ria_uapi_load("/data/app/afisha.scr", h);
 
    if (b) {
-      presult = res;
+      presult = (char*)res;
       cresult = sizeof(res);
       ria_uapi_execute(&status, presult, &cresult, "query_cities", NULL, 0, h);
       cresult = sizeof(res);
       ria_uapi_execute(&status, presult, &cresult, "get_next_city_url", NULL, 0, h);
    }
 
-   Fprintf0(Stdout, ria_uapi_error_msg(h));
-   Fprintf0(Stdout, "\n");
+   Fprintf(Stdout, "%s", ria_uapi_error_msg(h));
+   Fprintf(Stdout, "\n");
    Fflush(Stdout);
 
    ria_uapi_shutdown(h);
 
-
-   Fprintf0(Stdout, "$$$\n");
+   Fprintf(Stdout, "$$$\n");
    Fflush(Stdout);
-
 
    if (h == NULL)
       return (*env)->NewStringUTF(env, "cannot init RIA"); 
@@ -292,7 +289,7 @@ Java_com_example_afisha_Afisha_stringFromJNI( JNIEnv* env,
       return (*env)->NewStringUTF(env, "cannot load RIA"); 
    if (status != ria_exec_ok)
       return (*env)->NewStringUTF(env, "cannot exec RIA"); 
-   return (*env)->NewStringUTF(env, res); 
+   return (*env)->NewStringUTF(env, (char*)res); 
 
 
 } 

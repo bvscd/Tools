@@ -63,11 +63,12 @@ include $(CLEAR_VARS)
 
 
 RIA_SRCS := \
-  ria_core.c ria_exec.c ria_func.c ria_http.c ria_papi.c ria_uapi.c
+  ria_core.c ria_exec.c ria_func.c ria_http.c ria_papi.c ria_uapi.c \
+  ria_pars.c
 EMB_SRCS := \
-  emb_buff.c emb_codr.c emb_heap.c emb_init.c emb_stdc.c emb_sync.c 
+  emb_buff.c emb_codr.c emb_heap.c emb_init.c emb_port.c
 
-LOCAL_ARM_MODE := 
+LOCAL_ARM_MODE := arm
 LOCAL_MODULE := ria
 LOCAL_SRC_FILES := ria_jni.c $(addprefix ria/,$(RIA_SRCS))
 LOCAL_SRC_FILES += $(addprefix framework/,$(EMB_SRCS))
